@@ -1,4 +1,5 @@
 require "filters"
+require "rendering"
 
 module ActionController
   class Metal
@@ -10,6 +11,6 @@ module ActionController
   end
 
   class Base < Metal
-    include Filters
+    include Filters, Rendering
   end
 end

@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
-  before_action :header
+  # before_action :header
 
   def index
-    response.write "Hello from home controller"
+    @message = "Instance var!"
+    render :index
   end
 
   def header
