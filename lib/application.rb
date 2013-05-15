@@ -1,4 +1,6 @@
 require "action_controller"
+require "router"
+require "config/routes"
 
 class Application
   def call(env)
@@ -17,9 +19,7 @@ class Application
   end
 
   def route(path)
-    # /home/index => "home", "index"
-    _, controller, action = path.split("/") # => ["", "home", "index"]
-    [controller || "home", action || "index"]
+    Routes.recognize(path)
   end
 
   def load_controller_class(name)
