@@ -12,11 +12,33 @@ module ActiveRecord
     end
 
     def method_missing(name, *args)
-      if self.class.columns.include?(name)
-        @attributes[name]
-      else
+      if self.class.attribute_methods_generated?
         super
+      else
+        self.class.define_attribute_methods
+
+        if self.class.columns.include?(name)
+          send name
+        else
+          super
+        end
       end
+    end
+
+    # User.reset_column_information
+    def self.define_attribute_methods
+      columns.each do |column|
+        class_eval <<-RUBY
+          def #{column}
+            @attributes[:#{column}]
+          end
+        RUBY
+      end
+      @attribute_methods_generated = true
+    end
+
+    def self.attribute_methods_generated?
+      @attribute_methods_generated
     end
 
     def self.find(id)
