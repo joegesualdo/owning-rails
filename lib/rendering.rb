@@ -8,10 +8,10 @@ module Rendering
   def render_to_string(action)
     path = template_path(action)
     method = compile_template(path)
-    content = send method
+    content_for :layout, send(method)
 
     layout_method = compile_template(layout_path)
-    send(layout_method) { content }
+    send(layout_method) { |name = :layout| @content_for[name] }
   end
 
   def compile_template(path)
@@ -27,6 +27,11 @@ module Rendering
     end
 
     method_name
+  end
+
+  def content_for(name, value)
+    @content_for ||= {}
+    @content_for[name] = value
   end
 
   def template_path(action)

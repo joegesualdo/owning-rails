@@ -29,4 +29,8 @@ class RenderingTest < Test::Unit::TestCase
   def test_render_the_layout
     assert_match "<title>", @controller.render_to_string("index")
   end
+  
+  def test_renders_content_for
+    assert_match "<title>Hello</title>", @controller.render_to_string("index")
+  end
 end
