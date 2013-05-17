@@ -1,10 +1,11 @@
 module ActiveRecord
   class Relation
-    attr_accessor :where_values
+    attr_accessor :where_values, :order_values
 
     def initialize(klass)
       @klass = klass
       @where_values = []
+      @order_values = []
     end
 
     # User.where(....).where(...)
@@ -14,10 +15,19 @@ module ActiveRecord
       relation
     end
 
+    def order(values)
+      relation = clone
+      relation.order_values += [values]
+      relation
+    end
+
     def to_sql
       sql = "SELECT * FROM #{@klass.table_name}"
       if @where_values.any?
         sql << " WHERE " + @where_values.join(" AND ")
+      end
+      if @order_values.any?
+        sql << " ORDER BY " + @order_values.join(", ")
       end
       sql
     end

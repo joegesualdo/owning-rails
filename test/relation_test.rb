@@ -13,6 +13,11 @@ class RelationTest < Test::Unit::TestCase
     assert_equal "SELECT * FROM users WHERE name = 'Marc'", relation.to_sql
   end
 
+  def test_order
+    relation = User.order(:name)
+    assert_equal "SELECT * FROM users ORDER BY name", relation.to_sql
+  end
+
   def test_to_a
     user = @relation.where("id = 1").to_a.first
     assert_equal 1, user.id
