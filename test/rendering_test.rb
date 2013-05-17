@@ -15,4 +15,18 @@ class RenderingTest < Test::Unit::TestCase
   def test_controller_name
     assert_equal "home", @controller.controller_name
   end
+
+  def test_compile_template
+    method_name = @controller.compile_template(@controller.template_path("index"))
+    assert_respond_to @controller, method_name
+    assert_match "<p>", @controller.send(method_name)
+  end
+
+  def test_render_to_string
+    assert_match "<p>", @controller.render_to_string("index")
+  end
+  
+  def test_render_the_layout
+    assert_match "<title>", @controller.render_to_string("index")
+  end
 end
