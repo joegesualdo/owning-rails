@@ -8,13 +8,6 @@
         <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_APPLICATION_ROOT" VALUE="$MODULE_DIR$" />
       </configuration>
     </facet>
-    <facet type="gem" name="Gem">
-      <configuration>
-        <option name="GEM_APP_ROOT_PATH" value="" />
-        <option name="GEM_APP_TEST_PATH" value="" />
-        <option name="GEM_APP_LIB_PATH" value="" />
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -22,8 +15,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="rake (v10.1.0, RVM: ruby-1.9.3-p392) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.7, RVM: ruby-1.9.3-p392) [gem]" level="application" />
   </component>
 </module>
 
